@@ -41,7 +41,7 @@ const Navbar = () => {
           <Link href="/blog" className="text-gray-300 hover:text-pink-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,0,255,0.8)]">Blog</Link>
           <Link href="/about" className="text-gray-300 hover:text-purple-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(128,0,255,0.8)]">About</Link>
           <Link href="/contact" className="text-gray-300 hover:text-green-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(0,255,128,0.8)]">Contact</Link>
-          <Link href="/api/auth/signout" className="text-gray-400 hover:text-red-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,50,50,0.8)]">Logout</Link>
+          <Link href="/login" className="text-gray-400 hover:text-red-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,50,50,0.8)]">Logout</Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -60,7 +60,7 @@ const Navbar = () => {
           <Link href="/blog" className="block text-gray-300 hover:text-pink-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,0,255,0.8)]">Blog</Link>
           <Link href="/about" className="block text-gray-300 hover:text-purple-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(128,0,255,0.8)]">About</Link>
           <Link href="/contact" className="block text-gray-300 hover:text-green-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(0,255,128,0.8)]">Contact</Link>
-          <Link href="/api/auth/signout" className="block text-gray-400 hover:text-red-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,50,50,0.8)]">Logout</Link>
+          <Link href="/login" className="block text-gray-400 hover:text-red-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,50,50,0.8)]">Logout</Link>
         </nav>
       )}
     </header>
