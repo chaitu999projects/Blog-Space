@@ -49,6 +49,10 @@ export const { auth, signIn, signOut, handlers: { GET, POST } } = NextAuth({
       return session;
     },
   },
+  trustedHosts: [
+    "blog-space-w84r.onrender.com", // your deployed domain
+    "localhost:3000",               // for local dev
+  ],
 
   secret: process.env.AUTH_SECRET,
 
