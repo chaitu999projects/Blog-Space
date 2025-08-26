@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^4.9.0",
+    "@sentry/browser": "^10.5.0",
     "lucide-react": "^0.541.0",
     "mongodb": "^6.18.0",
     "mongoose": "^8.18.0",
