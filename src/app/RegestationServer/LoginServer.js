@@ -2,7 +2,6 @@
 
 import { signIn } from "../../../auth";
 import { DBConnection } from "../utils/config/db";
-import { redirect } from "next/navigation";
 
 export const LoginServer = async (loginDetails) => {
   // Validate input
