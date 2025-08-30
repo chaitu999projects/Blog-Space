@@ -4,7 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { auth } from "../../auth"
 import { redirect } from "next/navigation"
-import DisplayBlog from "./createblog/getblog/page"
+import DisplayBlog from "./blogs/page"
 
 const HomePage = async() => {
   const session = await auth();
@@ -24,7 +24,7 @@ const HomePage = async() => {
           Discover insights, stories, and guides with a touch of creativity.
         </p>
         <Link
-          href="/blogs"
+          href="/createblog/getblog"
           className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-full shadow-lg shadow-indigo-500/40 transition text-lg"
         >
          Create Blog
@@ -54,9 +54,9 @@ const HomePage = async() => {
       </section>
 
       {/*3. Recent Posts */}
-      <section >
+      <div id="allBlogs">
         <DisplayBlog />
-      </section>
+      </div>
     </main>
   )
 }

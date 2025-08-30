@@ -1,57 +1,86 @@
-// app/createblog/page.jsx
-import { DBConnection } from '@/app/utils/config/db'
-import BlogModel from '@/app/utils/models/Blog'
-import { redirect } from 'next/navigation'
-import React from 'react'
-import SubmitButton from '../Components/SubmitButton/SubmitButton'
+"use client" 
+import { useEffect, useState } from "react"
 
-export default function CreateBlog() {
-  // ✅ Server Action
-  const formHandleData = async (formData) => {
-    "use server"
-    await DBConnection();
-    console.log("Server Activated");
+export default function DisplayBlog() {
+  const [blogs, setBlogs] = useState([])
+  const [searchName, setSearchName] = useState("")
 
-    const name = formData.get('name');
-    const title = formData.get('title');
-    const description = formData.get('description');
+  // Fetch blogs from API
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch("/api/userblog", { cache: "no-store" }) 
+        const data = await res.json()
+        setBlogs(data)
+      } catch (error) {
+        console.error("Error fetching blogs:", error)
+      }
+    }
+    fetchBlogs()
+  }, [])
 
-    await BlogModel.create({ name, title, description });
-
-    redirect('/')
-  }
+  // Filter blogs by name
+  const filteredBlogs = searchName.trim()
+    ? blogs.filter((b) =>
+        b.name.toLowerCase().includes(searchName.toLowerCase())
+      )
+    : blogs
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
-      <div className="w-full max-w-md p-8 rounded-2xl shadow-[0_0_25px_rgba(0,255,255,0.3)] bg-gray-900/70 backdrop-blur-md">
-        <h1 className="text-3xl font-bold text-center mb-6 text-cyan-400 drop-shadow-[0_0_5px_rgba(0,255,255,0.8)]">
-          Create Blog
-        </h1>
-        <form action={formHandleData} className="space-y-5">
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Good Name?"
-            className="w-full px-4 py-3 rounded-xl bg-gray-800/60 border border-cyan-500/40 focus:border-cyan-400 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-cyan-500 shadow-[0_0_10px_rgba(0,255,255,0.3)]"
-          />
-          <input
-            type="text"
-            name="title"
-            placeholder="Topic Title"
-            className="w-full px-4 py-3 rounded-xl bg-gray-800/60 border border-purple-500/40 focus:border-purple-400 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-purple-500 shadow-[0_0_10px_rgba(200,100,255,0.3)]"
-          />
-          <textarea
-            name="description"
-            placeholder="Write Sweet Words"
-            rows={4}
-            className="w-full px-4 py-3 rounded-xl bg-gray-800/60 border border-pink-500/40 focus:border-pink-400 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-pink-500 shadow-[0_0_10px_rgba(255,100,200,0.3)] resize-none"
-          />
+    <div className="bg-gradient-to-br from-black via-gray-900 to-black py-16 px-6 text-white" id="allBlogs">
+      {/* Title */}
+      <h1 className="text-4xl font-extrabold text-center mb-8 
+                     text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 
+                     drop-shadow-[0_0_15px_rgba(0,255,255,0.6)] animate-pulse">
+        Recent Blogs ✨
+      </h1>
 
-          {/* ✅ Button with loading state */}
-          <SubmitButton />
-        </form>
+      {/* Search Bar */}
+      <div className="max-w-md mx-auto mb-10">
+        <input
+          type="text"
+          placeholder="🔍 Search by your name..."
+          value={searchName}
+          onChange={(e) => setSearchName(e.target.value)}
+          className="w-full px-4 py-3 rounded-xl bg-gray-800/70 border border-cyan-500/40 
+                     text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-cyan-500"
+        />
+      </div>
+
+      {/* Blogs Grid */}
+      <div className="max-h-[700px] pr-2 scrollbar-thin scrollbar-thumb-cyan-500 scrollbar-track-gray-800 overflow-y-auto">
+        {filteredBlogs.length > 0 ? (
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+            {filteredBlogs.map((blog, i) => (
+              <div
+                key={i}
+                className="relative group p-6 rounded-2xl 
+                           bg-gray-900/60 backdrop-blur-md border border-cyan-500/20 
+                           shadow-[0_0_15px_rgba(0,255,255,0.15)] 
+                           transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,255,255,0.5)]"
+              >
+                {/* Glow Border Effect */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 
+                                bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 blur-lg 
+                                transition duration-700 -z-10"></div>
+
+                {/* Blog Content */}
+                <h3 className="font-bold text-2xl mb-3 text-cyan-300 drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]">
+                  {blog.title}
+                </h3>
+                <h4 className="text-purple-400 font-semibold mb-4 drop-shadow-[0_0_6px_rgba(200,100,255,0.7)]">
+                  ✍️ {blog.name}
+                </h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  {blog.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-gray-400">No blogs found for "{searchName}"</p>
+        )}
       </div>
     </div>
   )
 }
-

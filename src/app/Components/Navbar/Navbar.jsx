@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
@@ -20,6 +19,14 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const links = [
+    { href: "/", label: "Home", color: "cyan-400" },
+    { href: "/photos", label: "Explore", color: "pink-400" },
+    { href: "/about", label: "About", color: "purple-400" },
+    { href: "/contact", label: "Contact", color: "green-400" },
+    { href: "/api/auth/signout", label: "Logout", color: "red-400" },
+  ];
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
@@ -36,40 +43,15 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-10">
-          <Link
-            href="/"
-            className="relative text-gray-300 hover:text-cyan-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
-          >
-            Home
-          </Link>
-
-          <Link
-            href="/photos"
-            className="relative text-gray-300 hover:text-pink-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(255,0,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-pink-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
-          >
-            Explore
-          </Link>
-
-          <Link
-            href="/about"
-            className="relative text-gray-300 hover:text-purple-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(128,0,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
-          >
-            About
-          </Link>
-
-          <Link
-            href="/contact"
-            className="relative text-gray-300 hover:text-green-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,128,0.9)] after:content-[''] after:block after:h-[2px] after:bg-green-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
-          >
-            Contact
-          </Link>
-
-          <Link
-            href="/api/auth/signout"
-            className="relative text-gray-400 hover:text-red-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(255,50,50,0.9)] after:content-[''] after:block after:h-[2px] after:bg-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
-          >
-            Logout
-          </Link>
+          {links.map(({ href, label, color }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`relative text-gray-300 hover:text-${color} font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-${color} after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left`}
+            >
+              {label}
+            </Link>
+          ))}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -83,41 +65,17 @@ const Navbar = () => {
 
       {/* Mobile Nav */}
       {isOpen && (
-        <nav className="hidden md:flex space-x-10">
-          <Link
-            href="/"
-            className="relative text-gray-300 hover:text-cyan-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
-          >
-            Home
-          </Link>
-
-          <Link
-            href="/photos"
-            className="relative text-gray-300 hover:text-pink-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(255,0,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-pink-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
-          >
-            Explore
-          </Link>
-
-          <Link
-            href="/about"
-            className="relative text-gray-300 hover:text-purple-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(128,0,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
-          >
-            About
-          </Link>
-
-          <Link
-            href="/contact"
-            className="relative text-gray-300 hover:text-green-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,128,0.9)] after:content-[''] after:block after:h-[2px] after:bg-green-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
-          >
-            Contact
-          </Link>
-
-          <Link
-            href="/api/auth/signout"
-            className="relative text-gray-400 hover:text-red-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(255,50,50,0.9)] after:content-[''] after:block after:h-[2px] after:bg-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
-          >
-            Logout
-          </Link>
+        <nav className="md:hidden bg-black/90 backdrop-blur-md px-6 py-4 space-y-4">
+          {links.map(({ href, label, color }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`block text-lg text-gray-300 hover:text-${color} font-medium transition duration-300`}
+              onClick={() => setIsOpen(false)}
+            >
+              {label}
+            </Link>
+          ))}
         </nav>
       )}
     </header>
