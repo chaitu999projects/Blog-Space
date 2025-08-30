@@ -38,7 +38,7 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-8">
           <Link href="/" className="text-gray-300 hover:text-cyan-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(0,255,255,0.8)]">Home</Link>
-          <Link href="/createblog/getblog" className="text-gray-300 hover:text-pink-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,0,255,0.8)]">Blogs</Link>
+          <Link href="/photos" className="text-gray-300 hover:text-pink-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,0,255,0.8)]">Explore</Link>
           <Link href="/about" className="text-gray-300 hover:text-purple-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(128,0,255,0.8)]">About</Link>
           <Link href="/contact" className="text-gray-300 hover:text-green-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(0,255,128,0.8)]">Contact</Link>
           <Link href="/api/auth/signout" className="text-gray-400 hover:text-red-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,50,50,0.8)]">Logout</Link>
@@ -57,7 +57,7 @@ const Navbar = () => {
       {isOpen && (
         <nav className="md:hidden bg-gradient-to-r from-gray-900 via-gray-800 to-black px-6 pb-4 space-y-3 flex flex-col items-start shadow-lg border-t border-gray-700">
           <Link href="/" className="block text-gray-300 hover:text-cyan-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(0,255,255,0.8)]">Home</Link>
-          <Link href="/createblog/getblog" className="block text-gray-300 hover:text-pink-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,0,255,0.8)]">Blogs</Link>
+          <Link href="/photos" className="block text-gray-300 hover:text-pink-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,0,255,0.8)]">Explore</Link>
           <Link href="/about" className="block text-gray-300 hover:text-purple-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(128,0,255,0.8)]">About</Link>
           <Link href="/contact" className="block text-gray-300 hover:text-green-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(0,255,128,0.8)]">Contact</Link>
           <Link href="/api/auth/signout" className="block text-gray-400 hover:text-red-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,50,50,0.8)]">Logout</Link>

@@ -39,7 +39,7 @@ const LoginPage = () => {
         setErrors({ server: result.message || "Login failed. Please try again." });
       }
     } catch (error) {
-      setErrors({ server: "An unexpected error occurred. Please try again." });
+      setErrors({ server: "🕊️ Before moving forward, kindly register." });
     } finally {
       setIsLoading(false);
     }

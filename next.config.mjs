@@ -22,7 +22,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "res.cloudinary.com",
+        hostname: "api.unsplash.com",
         port: "",
         pathname: "/**",
       },

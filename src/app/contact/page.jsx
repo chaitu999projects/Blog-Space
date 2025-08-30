@@ -1,6 +1,24 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
+import { ContactDetailsServer } from "../RegestationServer/ContactServer";
+import { redirect } from "next/navigation";
 
 const ContactPage = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+
+  const formContactDetails = async (e)=> {
+    e.preventDefault();
+    const contacts = {name, email, subject, message}
+    await ContactDetailsServer(contacts)
+    setName("");
+    setEmail("");
+    setSubject("");
+    setMessage("");
+    redirect('/');
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 py-16">
       {/* Page Title */}
@@ -27,10 +45,12 @@ const ContactPage = () => {
             Get In Touch
           </h2>
 
-          <form action="mailto:mulagani.chaitanya@gmail.com" method="POST" encType="text/plain" className="space-y-5">
+          <form action="mailto:mulagani.chaitanya@gmail.com" method="POST" encType="text/plain" className="space-y-5" onSubmit={formContactDetails}>
             <input
               type="text"
               name="name"
+              value={name}
+              onChange={(e)=> setName(e.target.value)}
               placeholder="Your Name"
               required
               className="w-full px-4 py-3 rounded-xl 
@@ -41,6 +61,8 @@ const ContactPage = () => {
             <input
               type="email"
               name="email"
+              value={email}
+              onChange={(e)=> setEmail(e.target.value)}
               placeholder="Your Email"
               required
               className="w-full px-4 py-3 rounded-xl 
@@ -51,6 +73,7 @@ const ContactPage = () => {
             <input
               type="text"
               name="subject"
+              onChange={(e)=> setSubject(e.target.value)}
               placeholder="Subject"
               className="w-full px-4 py-3 rounded-xl 
                          bg-gray-800/70 border border-pink-400/30 
@@ -60,6 +83,7 @@ const ContactPage = () => {
             <textarea
               rows={5}
               name="message"
+              onChange={(e)=> setMessage(e.target.value)}
               placeholder="Write your message..."
               required
               className="w-full px-4 py-3 rounded-xl 
