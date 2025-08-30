@@ -1,7 +1,6 @@
 
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import Auth0Provider from "next-auth/providers/auth0";   // ✅ Import Auth0
 import { DBConnection } from "@/app/utils/config/db";
 import UserModel from "@/app/utils/models/User";
 
@@ -29,7 +28,6 @@ export const { auth, signIn, signOut, handlers: { GET, POST } } = NextAuth({
     }),
   ],secret: process.env.NEXTAUTH_SECRET,
   trustHost: true,
-
   pages: {
     signIn: "/login",
   },
