@@ -50,27 +50,27 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-black to-gray-900 text-white px-6 py-12 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-black to-gray-900 text-white px-4 sm:px-6 py-10 sm:py-14 pt-20">
       {/* Title */}
-      <h1 className="text-4xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 drop-shadow-lg animate-pulse">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 drop-shadow-lg animate-pulse">
         ✨ Search Your Favorites
       </h1>
 
       {/* Search Form */}
       <form
         onSubmit={handleSubmit}
-        className="flex justify-center mb-10 gap-4 max-w-2xl mx-auto"
+        className="flex flex-col sm:flex-row items-center justify-center mb-10 gap-4 max-w-2xl mx-auto w-full"
       >
         <input
           type="text"
           placeholder="Search breathtaking images..."
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
-          className="flex-1 px-4 py-3 rounded-2xl bg-gray-800/80 border border-indigo-500/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-lg"
+          className="w-full sm:flex-1 px-4 py-3 rounded-2xl bg-gray-800/80 border border-indigo-500/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-lg text-base sm:text-lg"
         />
         <button
           type="submit"
-          className="px-6 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 transition font-semibold shadow-[0_0_15px_rgba(99,102,241,0.8)]"
+          className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 transition font-semibold shadow-[0_0_15px_rgba(99,102,241,0.8)] text-base sm:text-lg"
         >
           Search
         </button>
@@ -84,7 +84,7 @@ export default function Home() {
       )}
 
       {/* Image Results */}
-      <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-7xl mx-auto">
+      <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-7xl mx-auto">
         {images.map((img) => (
           <a
             key={img.id}
@@ -99,9 +99,9 @@ export default function Home() {
               alt={img.alt_description || "Unsplash image"}
               width={500}
               height={500}
-              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-64 sm:h-72 md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <span className="absolute bottom-2 right-2 text-xs bg-black/70 px-2 py-1 rounded-md text-indigo-300 shadow-lg">
+            <span className="absolute bottom-2 right-2 text-xs sm:text-sm bg-black/70 px-2 py-1 rounded-md text-indigo-300 shadow-lg">
               {img.user.name}
             </span>
           </a>
@@ -113,7 +113,7 @@ export default function Home() {
         <div className="flex justify-center mt-12">
           <button
             onClick={() => searchImages(false)}
-            className="px-8 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 font-semibold shadow-[0_0_15px_rgba(99,102,241,0.8)] transition"
+            className="px-8 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 font-semibold shadow-[0_0_15px_rgba(99,102,241,0.8)] transition text-base sm:text-lg"
           >
             Load More
           </button>

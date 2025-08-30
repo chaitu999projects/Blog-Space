@@ -54,7 +54,9 @@ const HomePage = async() => {
       </section>
 
       {/*3. Recent Posts */}
-      <DisplayBlog />
+      <section >
+        <DisplayBlog />
+      </section>
     </main>
   )
 }

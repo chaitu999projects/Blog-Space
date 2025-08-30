@@ -16,7 +16,8 @@ const DisplayBlog = async () => {
       </h1>
 
       {/* Blogs Grid */}
-      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+      <div className="max-h-[500px] pr-2 scrollbar-thin scrollbar-thumb-cyan-500 scrollbar-track-gray-800 overflow-y-auto">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
         {allBlogs.map((blog, i) => (
           <div
             key={i}
@@ -42,6 +43,7 @@ const DisplayBlog = async () => {
             </p>
           </div>
         ))}
+      </div>
       </div>
     </div>
   )
