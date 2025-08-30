@@ -12,7 +12,7 @@ const DisplayBlog = async () => {
       <h1 className="text-4xl font-extrabold text-center mb-14 
                      text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 
                      drop-shadow-[0_0_15px_rgba(0,255,255,0.6)] animate-pulse">
-        Midnight Glow Blogs ✨
+        All Blogs ✨
       </h1>
 
       {/* Blogs Grid */}
