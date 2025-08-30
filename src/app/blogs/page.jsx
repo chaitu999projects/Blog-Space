@@ -18,7 +18,7 @@ export default function CreateBlog() {
 
     await BlogModel.create({ name, title, description });
 
-    redirect('/createblog/getblog')
+    redirect('/')
   }
 
   return (
