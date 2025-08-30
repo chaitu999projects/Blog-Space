@@ -57,7 +57,7 @@ export const LoginServer = async (loginDetails) => {
     console.error("Login error:", error);
     
     // Handle specific error types
-    let errorMessage = "An unexpected error occurred during login";
+    let errorMessage = "🕊️ Before moving forward, kindly register.";
     
     if (error.name === "MongoServerError") {
       errorMessage = "Database connection error";
