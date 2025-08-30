@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import React, { useState, useEffect } from "react"
-import { Menu, X } from "lucide-react"
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
-        setScrolled(true)
+        setScrolled(true);
       } else {
-        setScrolled(false)
+        setScrolled(false);
       }
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
@@ -29,19 +29,47 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        
         {/* Logo */}
-        <h1 className="text-2xl font-extrabold text-white tracking-wide drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+        <h1 className="text-2xl font-extrabold text-cyan-400 tracking-wide drop-shadow-[0_0_12px_rgba(0,255,255,0.7)]">
           <Link href="/">BlogSpace</Link>
         </h1>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex space-x-8">
-          <Link href="/" className="text-gray-300 hover:text-cyan-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(0,255,255,0.8)]">Home</Link>
-          <Link href="/photos" className="text-gray-300 hover:text-pink-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,0,255,0.8)]">Explore</Link>
-          <Link href="/about" className="text-gray-300 hover:text-purple-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(128,0,255,0.8)]">About</Link>
-          <Link href="/contact" className="text-gray-300 hover:text-green-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(0,255,128,0.8)]">Contact</Link>
-          <Link href="/api/auth/signout" className="text-gray-400 hover:text-red-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,50,50,0.8)]">Logout</Link>
+        <nav className="hidden md:flex space-x-10">
+          <Link
+            href="/"
+            className="relative text-gray-300 hover:text-cyan-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
+          >
+            Home
+          </Link>
+
+          <Link
+            href="/photos"
+            className="relative text-gray-300 hover:text-pink-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(255,0,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-pink-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
+          >
+            Explore
+          </Link>
+
+          <Link
+            href="/about"
+            className="relative text-gray-300 hover:text-purple-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(128,0,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
+          >
+            About
+          </Link>
+
+          <Link
+            href="/contact"
+            className="relative text-gray-300 hover:text-green-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,128,0.9)] after:content-[''] after:block after:h-[2px] after:bg-green-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
+          >
+            Contact
+          </Link>
+
+          <Link
+            href="/api/auth/signout"
+            className="relative text-gray-400 hover:text-red-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(255,50,50,0.9)] after:content-[''] after:block after:h-[2px] after:bg-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
+          >
+            Logout
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -55,16 +83,45 @@ const Navbar = () => {
 
       {/* Mobile Nav */}
       {isOpen && (
-        <nav className="md:hidden bg-gradient-to-r from-gray-900 via-gray-800 to-black px-6 pb-4 space-y-3 flex flex-col items-start shadow-lg border-t border-gray-700">
-          <Link href="/" className="block text-gray-300 hover:text-cyan-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(0,255,255,0.8)]">Home</Link>
-          <Link href="/photos" className="block text-gray-300 hover:text-pink-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,0,255,0.8)]">Explore</Link>
-          <Link href="/about" className="block text-gray-300 hover:text-purple-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(128,0,255,0.8)]">About</Link>
-          <Link href="/contact" className="block text-gray-300 hover:text-green-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(0,255,128,0.8)]">Contact</Link>
-          <Link href="/api/auth/signout" className="block text-gray-400 hover:text-red-400 font-medium transition hover:drop-shadow-[0_0_6px_rgba(255,50,50,0.8)]">Logout</Link>
+        <nav className="hidden md:flex space-x-10">
+          <Link
+            href="/"
+            className="relative text-gray-300 hover:text-cyan-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
+          >
+            Home
+          </Link>
+
+          <Link
+            href="/photos"
+            className="relative text-gray-300 hover:text-pink-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(255,0,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-pink-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
+          >
+            Explore
+          </Link>
+
+          <Link
+            href="/about"
+            className="relative text-gray-300 hover:text-purple-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(128,0,255,0.9)] after:content-[''] after:block after:h-[2px] after:bg-purple-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
+          >
+            About
+          </Link>
+
+          <Link
+            href="/contact"
+            className="relative text-gray-300 hover:text-green-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(0,255,128,0.9)] after:content-[''] after:block after:h-[2px] after:bg-green-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
+          >
+            Contact
+          </Link>
+
+          <Link
+            href="/api/auth/signout"
+            className="relative text-gray-400 hover:text-red-400 font-medium transition duration-300 hover:drop-shadow-[0_0_8px_rgba(255,50,50,0.9)] after:content-[''] after:block after:h-[2px] after:bg-red-400 after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
+          >
+            Logout
+          </Link>
         </nav>
       )}
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
