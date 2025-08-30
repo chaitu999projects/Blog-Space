@@ -21,6 +21,7 @@ const Navbar = () => {
 
   const links = [
     { href: "/", label: "Home", color: "cyan-400" },
+    { href: "/createblog/getblog", label: "Create Blog", color: "cyan-400" },
     { href: "/photos", label: "Explore", color: "pink-400" },
     { href: "/about", label: "About", color: "purple-400" },
     { href: "/contact", label: "Contact", color: "green-400" },
